@@ -1,0 +1,72 @@
+services:
+  chat-web:
+    container_name: chat-web
+    image: nginx:alpine
+    ports:
+      - "9090:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - chat-app
+    networks:
+      - chat-network
+
+  chat-app:
+    container_name: chat-app
+    build:
+      context: .
+      dockerfile: Dockerfile # Build from the Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - chat-postgres
+    volumes:
+      - ./:/var/www
+    networks:
+      - chat-network
+
+  chat-postgres:
+    image: postgres
+    container_name: chat-postgres
+    restart: always
+    expose:
+      - 5432
+    ports:
+      - "2345:5432"
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - chat_postgres_data:/var/lib/postgresql/data
+    networks:
+      - chat-network
+
+  chat-pgadmin:
+    image: dpage/pgadmin4
+    container_name: chat-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "8080:80"
+    networks:
+      - chat-network
+
+  chat-node:
+    image: node:20
+    container_name: chat-node
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - chat-network
+    command: bash -c "npm install && npm run build"
+
+networks:
+  chat-network:
+    driver: bridge
+
+volumes:
+  chat_postgres_data:
