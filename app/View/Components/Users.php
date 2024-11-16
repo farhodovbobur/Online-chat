@@ -16,8 +16,8 @@ class Users extends Component
      */
     public function __construct()
     {
-        $this->users = User::all();
         $this->me = auth()->user();
+        $this->users = User::query()->whereNot('id', auth()->id())->get();
     }
 
     /**

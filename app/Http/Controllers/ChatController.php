@@ -18,10 +18,7 @@ class ChatController extends Controller
      */
     public function index(): Application|Factory|View
     {
-        $me = auth()->user();
-        $users = User::all();
-
-        return view('home', ['users' => $users]);
+        return view('chat');
     }
 
     /**
@@ -38,12 +35,12 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'message' => ['required', 'string'],
-            'sender_id' => ['required', 'integer', 'in:' . Auth::id()],
+            'message'     => ['required', 'string'],
+            'sender_id'   => ['required', 'integer', 'in:' . Auth::id()],
             'receiver_id' => ['required', 'integer', 'exists:' . User::class . ',id'],
         ]);
 
-        $message = Message::create($validate);
+        Message::create($validate);
 
         return $this->show($request->receiver_id);
     }
@@ -55,9 +52,18 @@ class ChatController extends Controller
     {
         $user = User::query()->find($id);
 
-        $action = route('user', $id);
+        $owner = Auth::id();
+        $partner = $user->id;
 
-        return view('home', ['user' => $user, 'action' => $action]);
+        $messages = Message::query()->where(function ($query) use ($owner, $partner) {
+            $query->where('sender_id', $owner)
+                ->where('receiver_id', $partner);
+        })->orWhere(function ($query) use ($owner, $partner) {
+            $query->where('sender_id', $partner)
+                ->where('receiver_id', $owner);
+        })->get();
+
+        return view('chat', ['user' => $user, 'messages' => $messages]);
     }
 
     /**

@@ -13,7 +13,8 @@ class Message extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public $user
+        public $user,
+        public $messages,
     )
     {
         $this->auth = auth()->user();
