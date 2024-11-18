@@ -7,7 +7,7 @@
     </div>
 
     <div class="xl:col-span-9 lg:col-span-7 md:col-span-7">
-      <ChatComponent :user="selectedUser" v-if="selectedUser"/>
+      <ChatComponent :user="selectedUser" :auth="auth" v-if="selectedUser"/>
     </div>
   </div>
   <!-- End Content -->

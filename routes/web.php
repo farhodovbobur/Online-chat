@@ -11,6 +11,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
    Route::post('/user/{id}', [ChatController::class, 'store']);
 
    Route::get('/api/users', [UserController::class, 'index']);
+   Route::get('/api/messages/{id}', [ChatController::class, 'getMessages']);
+   Route::post('/api/messages/', [ChatController::class, 'storeMessages']);
 });
 
 Route::get('/dashboard', function () {

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,15 +53,15 @@ class ChatController extends Controller
     {
         $user = User::query()->find($id);
 
-        $owner = Auth::id();
+        $auth    = Auth::id();
         $partner = $user->id;
 
-        $messages = Message::query()->where(function ($query) use ($owner, $partner) {
-            $query->where('sender_id', $owner)
+        $messages = Message::query()->where(function ($query) use ($auth, $partner) {
+            $query->where('sender_id', $auth)
                 ->where('receiver_id', $partner);
-        })->orWhere(function ($query) use ($owner, $partner) {
+        })->orWhere(function ($query) use ($auth, $partner) {
             $query->where('sender_id', $partner)
-                ->where('receiver_id', $owner);
+                ->where('receiver_id', $auth);
         })->get();
 
         return view('chat', ['user' => $user, 'messages' => $messages]);
@@ -88,5 +89,35 @@ class ChatController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getMessages($id): JsonResponse
+    {
+        $user = User::query()->find($id);
+
+        $auth    = Auth::id();
+        $partner = $user->id;
+
+        $messages = Message::query()
+            ->where(function ($query) use ($auth, $partner) {
+                $query->where('sender_id', $auth)
+                    ->where('receiver_id', $partner);
+            })->orWhere(function ($query) use ($auth, $partner) {
+                $query->where('sender_id', $partner)
+                    ->where('receiver_id', $auth);
+            })->with(['sender', 'receiver'])->get();
+
+        return response()->json($messages);
+    }
+
+    public function storeMessages()
+    {
+        $message = Message::query()->create([
+            'sender_id' => request('sender'),
+            'receiver_id' => request('receiver'),
+            'message' => request('text'),
+        ]);
+
+        return response()->json($message);
     }
 }
