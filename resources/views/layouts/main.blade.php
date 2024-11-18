@@ -41,11 +41,7 @@
     <main class="page-content bg-gray-50 dark:bg-slate-800">
 
         <div class="container-fluid relative px-8">
-            <!-- Start Content -->
-            <div class="grid md:grid-cols-12 grid-cols-1 mt-6 gap-2">
-                {{ $slot }}
-            </div>
-            <!-- End Content -->
+            {{ $slot }}
         </div><!--end container-->
     </main>
     <!--End page-content" -->
