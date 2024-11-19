@@ -170,7 +170,7 @@ import axios from "axios";
 
   onMounted(() => {
     fetchMessages();
-    window.Echo.private(`chat.${props.auth.id}`)
+    window.Echo.private(`channel.chat.${props.auth.id}`)
         .listen('GotMessage', (response) => {
           messages.value.push(response.message)
         })

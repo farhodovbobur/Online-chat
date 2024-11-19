@@ -22,4 +22,12 @@ class Message extends Model
     {
         return $this->belongsTo(User::class, 'receiver_id');
     }
+
+    public function getTimeAttribute(): string
+    {
+        return date(
+            'H:i',
+            strtotime($this->attributes['created_at'])
+        );
+    }
 }

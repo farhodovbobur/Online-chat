@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\GotMessage;
+use App\Jobs\SendMessage;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
@@ -111,7 +112,7 @@ class ChatController extends Controller
         return response()->json($messages);
     }
 
-    public function storeMessages()
+    public function storeMessages(): JsonResponse
     {
         $message = Message::query()->create([
             'sender_id' => request('sender'),
@@ -119,7 +120,7 @@ class ChatController extends Controller
             'message' => request('text'),
         ]);
 
-        broadcast(new GotMessage($message));
+        SendMessage::dispatch($message);
 
         return response()->json($message);
     }
