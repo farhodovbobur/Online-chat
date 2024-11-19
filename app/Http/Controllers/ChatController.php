@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GotMessage;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
@@ -117,6 +118,8 @@ class ChatController extends Controller
             'receiver_id' => request('receiver'),
             'message' => request('text'),
         ]);
+
+        broadcast(new GotMessage($message));
 
         return response()->json($message);
     }

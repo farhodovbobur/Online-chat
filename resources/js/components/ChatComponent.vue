@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div ref="messagesContainer" class="p-4 list-none mb-0 min-h-[548px] max-h-[548px]" data-simplebar>
+    <div ref="messagesContainer" class="p-4 overflow-y-auto mb-0 min-h-[548px] max-h-[548px]" >
       <ul v-for="message in messages" v-bind:key="message.id">
         <li v-if="message.sender_id === auth.id" class="text-end">
           <div class="inline-block">
@@ -113,11 +113,14 @@ import axios from "axios";
   const fileLink = (file) => `/assets/images/client/${file}`;
 
   const scrollToBottom = () => {
-    if (messagesContainer) {
-      nextTick(() => {
-        messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
-      });
-    }
+    nextTick(() => {
+      if (messagesContainer.value) {
+        messagesContainer.value.scrollTo({
+          top: messagesContainer.value.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    });
   };
 
   const fetchMessages = () => {
@@ -125,7 +128,6 @@ import axios from "axios";
         .get(`/api/messages/${props.user.id}/`)
         .then((response) => {
           messages.value = response.data;
-          nextTick(scrollToBottom);
         })
         .catch((error) => {
           console.error("Error fetching messages:", error);
@@ -143,7 +145,6 @@ import axios from "axios";
           .then((response) => {
             messages.value.push(response.data);
             newMessage.value = "";
-            nextTick(scrollToBottom);
           })
           .catch((error) => {
             console.error("Error sending message:", error);
@@ -155,10 +156,23 @@ import axios from "axios";
       () => props.user.id,
       () => {
         fetchMessages();
-      }
+      },
+      {deep: true}
+  );
+
+  watch(
+      messages,
+      () => {
+        scrollToBottom();
+      },
+      { deep: true }
   );
 
   onMounted(() => {
-    fetchMessages()
+    fetchMessages();
+    window.Echo.private(`chat.${props.auth.id}`)
+        .listen('GotMessage', (response) => {
+          messages.value.push(response.message)
+        })
   })
 </script>

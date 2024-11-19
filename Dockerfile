@@ -16,7 +16,9 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_pgsql \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip \
+    && docker-php-ext-configure pcntl --enable-pcntl \
+    && docker-php-ext-install pcntl
 
 # Set Zsh as the default shell
 RUN chsh -s /bin/zsh

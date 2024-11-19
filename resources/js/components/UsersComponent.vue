@@ -13,7 +13,7 @@
         <a href="#" class="flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5"
            @click.prevent="selectUser(user)">
         <div class="relative">
-          <img :src="fileLink('09.jpg')" class="size-11 rounded-full shadow dark:shadow-gray-700" alt="">
+          <img :src="fileLink('04.jpg')" class="size-11 rounded-full shadow dark:shadow-gray-700" alt="">
           <span class="absolute top-0.5 start-0.5 flex items-center justify-center bg-green-600 text-white text-[10px] font-bold rounded-full size-2 after:content-[''] after:absolute after:h-2 after:w-2 after:bg-green-600 after:top-0 after:end-0 after:rounded-full after:animate-ping"></span>
         </div>
         <div class="overflow-hidden flex-1 ms-2">
