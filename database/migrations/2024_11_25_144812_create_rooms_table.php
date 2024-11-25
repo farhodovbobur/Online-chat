@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('channels', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['group', 'contact', 'channel'])->nullable();
             $table->string('channel')->unique()->nullable();
