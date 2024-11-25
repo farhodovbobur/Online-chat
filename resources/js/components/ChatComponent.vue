@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div ref="messagesContainer" class="p-4 overflow-y-auto mb-0 min-h-[548px] max-h-[548px]" >
+    <div ref="messagesContainer" class="p-4 overflow-y-auto mb-0 min-h-[523px] max-h-[523px]" >
       <ul v-for="message in messages" v-bind:key="message.id">
         <li v-if="message.sender_id === auth.id" class="text-end">
           <div class="inline-block">

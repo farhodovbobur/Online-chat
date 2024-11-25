@@ -114,6 +114,7 @@ class ChatController extends Controller
 
     public function storeMessages(): JsonResponse
     {
+        $channel =
         $message = Message::query()->create([
             'sender_id' => request('sender'),
             'receiver_id' => request('receiver'),

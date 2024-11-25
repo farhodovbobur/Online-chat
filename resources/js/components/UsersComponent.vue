@@ -1,6 +1,6 @@
 <template>
   <div class="rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
-    <div class="text-center p-6 border-b border-gray-100 dark:border-gray-800">
+    <div class="text-center p-4 border-b border-gray-100 dark:border-gray-800">
       <img :src="fileLink('07.jpg')" class="size-20 rounded-full shadow dark:shadow-gray-700 mx-auto" alt="">
       <a href="/">
         <h5 class="mt-3 font-medium text-xl mb-0">{{ auth.first_name }} {{ auth.last_name }}</h5>
@@ -8,7 +8,7 @@
       </a>
     </div>
 
-    <div class="p-2 min-h-[482px] max-h-[482px]" data-simplebar>
+    <div class="p-2 min-h-[472px] max-h-[472px]" data-simplebar>
       <div v-for="user in users" v-bind:key="user.id">
         <a href="#" class="flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5"
            @click.prevent="selectUser(user)">

@@ -24,47 +24,40 @@
 </head>
 
 <body class="font-body text-base text-black dark:text-white dark:bg-slate-900">
-<!-- Loader Start -->
-<div id="preloader">
-    <div id="status">
-        <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
+    <!-- Loader Start -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
         </div>
     </div>
-</div>
-<!-- Loader End -->
+    <!-- Loader End -->
 
+    <div class="page-wrapper toggled">
+        {{ $slot }}
 
-<div class="page-wrapper toggled">
-    <!-- Start Page Content -->
-    <main class="page-content bg-gray-50 dark:bg-slate-800">
+    </div>
+    <!-- page-wrapper -->
 
-        <div class="container-fluid relative px-8">
-            {{ $slot }}
-        </div><!--end container-->
-    </main>
-    <!--End page-content" -->
-</div>
-<!-- page-wrapper -->
+    <!-- Switcher -->
+    <div class="fixed top-[10%] z-50">
+        <span class="relative inline-block rotate-90">
+            <input type="checkbox" class="checkbox opacity-0 absolute" id="chk" />
+            <label class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-700 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8" for="chk">
+                <i data-feather="moon" class="size-[18px] text-yellow-500"></i>
+                <i data-feather="sun" class="size-[18px] text-yellow-500"></i>
+                <span class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] size-7"></span>
+            </label>
+        </span>
+    </div>
+    <!-- Switcher -->
 
-<!-- Switcher -->
-<div class="fixed top-[10%] z-50">
-    <span class="relative inline-block rotate-90">
-        <input type="checkbox" class="checkbox opacity-0 absolute" id="chk" />
-        <label class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-700 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8" for="chk">
-            <i data-feather="moon" class="size-[18px] text-yellow-500"></i>
-            <i data-feather="sun" class="size-[18px] text-yellow-500"></i>
-            <span class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] size-7"></span>
-        </label>
-    </span>
-</div>
-<!-- Switcher -->
+    <!-- JAVASCRIPTS -->
+    <script src="/assets/libs/feather-icons/feather.min.js"></script>
+    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
 
-<!-- JAVASCRIPTS -->
-<script src="/assets/libs/feather-icons/feather.min.js"></script>
-<script src="/assets/libs/simplebar/simplebar.min.js"></script>
-
-<!-- JAVASCRIPTS -->
+    <!-- JAVASCRIPTS -->
 </body>
 </html>
