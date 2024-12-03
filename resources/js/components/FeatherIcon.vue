@@ -12,7 +12,7 @@
       required: true,
     },
     size: {
-      type: Number,
+      type: String,
       default: 24,
     },
     color: {

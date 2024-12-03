@@ -6,7 +6,7 @@
       <a id="close-sidebar"
          class="w-8 h-8 inline-flex items-center justify-center text-[20px] bg-gray-50 dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 border border-gray-100 dark:border-gray-800 text-slate-900 dark:text-white rounded-md"
          href="#">
-        <FeatherIcon name="menu" size="18" />
+        <FeatherIcon name="menu" size=18 />
       </a>
 
       <!-- Searchbar -->
