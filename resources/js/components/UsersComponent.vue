@@ -1,11 +1,18 @@
 <template>
   <div class="rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
     <div class="text-center p-4 border-b border-gray-100 dark:border-gray-800">
-      <img :src="fileLink('07.jpg')" class="size-20 rounded-full shadow dark:shadow-gray-700 mx-auto" alt="">
-      <a href="/">
-        <h5 class="mt-3 font-medium text-xl mb-0">{{ auth.first_name }} {{ auth.last_name }}</h5>
-        <p class="text-slate-400 mb-0">@{{ auth.username }}</p>
-      </a>
+      <!-- Searchbar -->
+      <div class="pl-2">
+        <div class="relative sm:block hidden">
+          <i class="mdi mdi-magnify absolute top-1/2 left-3 -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+          <input
+              type="text"
+              class="form-input w-56 pl-9 py-2 h-8 bg-white dark:bg-slate-900 dark:text-slate-200 rounded-md border border-gray-100 dark:border-gray-800 focus:ring-0 focus:border-green-500 outline-none"
+              name="s"
+              id="searchItem"
+              placeholder="Search..." />
+        </div>
+      </div>
     </div>
 
     <div class="p-2 min-h-[472px] max-h-[472px]" data-simplebar>

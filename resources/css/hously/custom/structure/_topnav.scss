@@ -19,15 +19,15 @@
             @apply decoration-0;
         }
         .sidebar-content {
-            @apply relative overflow-y-auto h-full max-h-full;
+            @apply relative h-full max-h-full;
             &.desktop {
                 @apply overflow-y-hidden;
             }
         }
         .sidebar-brand {
-            @apply flex items-center h-[70px] py-2.5 px-5;
+            @apply flex items-center h-[100px] my-2 py-2.5 px-5;
             > a {
-                @apply uppercase font-bold flex-grow duration-500;
+                @apply font-bold flex-grow duration-500;
                 &:focus {
                     outline: none !important;
                 }

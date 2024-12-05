@@ -9,18 +9,6 @@
         <FeatherIcon name="menu" size=18 />
       </a>
 
-      <!-- Searchbar -->
-      <div class="pl-2">
-        <div class="relative sm:block hidden">
-          <i class="mdi mdi-magnify absolute top-1/2 left-3 -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
-          <input
-              type="text"
-              class="form-input w-56 pl-9 py-2 h-8 bg-white dark:bg-slate-900 dark:text-slate-200 rounded-md border border-gray-100 dark:border-gray-800 focus:ring-0 focus:border-green-500 outline-none"
-              name="s"
-              id="searchItem"
-              placeholder="Search..." />
-        </div>
-      </div>
     </div>
 
     <!-- Right Section -->

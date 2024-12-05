@@ -32,7 +32,8 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import {chatStore} from "./store/store.js";
 
 import UsersComponent from "./components/UsersComponent.vue";
 import ChatComponent from "./components/ChatComponent.vue";
@@ -46,11 +47,17 @@ const props = defineProps({
   }
 });
 
+const store = chatStore()
+
 const selectedUser = ref(null);
 
 const openChat = (user) => {
   selectedUser.value = user;
 };
+
+onMounted(async () => {
+  store.auth = props.auth
+})
 
 </script>
 

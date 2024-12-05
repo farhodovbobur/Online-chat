@@ -1,7 +1,13 @@
 <template>
 
   <div class="sidebar-content">
-
+    <div class="sidebar-brand  text-center">
+      <img :src="func.fileLink('07.jpg')" class="size-20 rounded-full shadow dark:shadow-gray-700 mx-auto" alt="">
+      <a href="/">
+        <h5 class="mt-3 font-medium text-xl mb-0">{{ store.auth.first_name }} {{ store.auth.last_name }}</h5>
+        <p class="mb-0">@{{ store.auth.username }}</p>
+      </a>
+    </div>
 
     <ul class="sidebar-menu border-t border-white/10" data-simplebar style="height: calc(100% - 70px);">
       <li>
@@ -82,28 +88,16 @@
           </ul>
         </div>
       </li>
-
-      <li class="relative lg:m-8 m-6 px-8 py-10 rounded-lg bg-gradient-to-b to-transparent from-slate-800 text-center">
-                            <span class="relative z-10">
-                                <span class="text-xl font-medium h5 text-white">Upgrade to Pro</span>
-
-                                <span
-                                    class="text-slate-400 mt-3 mb-5 block">Get one month free and subscribe to pro</span>
-
-                                <a href="https://1.envato.market/hously" target="_blank"
-                                   class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle transition duration-500 ease-in-out text-base text-center bg-gray-500/5 hover:bg-gray-500 border-gray-500/10 hover:border-gray-500 text-white rounded-md">Subscribe</a>
-                            </span>
-
-        <span
-            class="mdi mdi-home-city-outline text-[160px] absolute top-1/2 -translate-y-1/2 start-0 end-0 mx-auto text-center opacity-[0.02] text-white z-0"></span>
-      </li>
     </ul>
   </div>
 
 </template>
 
 <script setup>
+  import {funcStore, chatStore} from "../store/store.js";
 
+  const store = chatStore()
+  const func = funcStore();
 </script>
 
 <style scoped>
