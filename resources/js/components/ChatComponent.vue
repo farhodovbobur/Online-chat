@@ -1,6 +1,6 @@
 <template>
   <div class="rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
-    <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 p-4">
+    <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 p-3">
       <div class="flex">
         <img
             :src="fileLink('07.jpg')"

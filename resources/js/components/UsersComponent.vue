@@ -2,7 +2,7 @@
   <div class="rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
     <div class="text-center p-4 border-b border-gray-100 dark:border-gray-800">
       <!-- Searchbar -->
-      <div class="pl-2">
+      <div class="pt-1">
         <div class="relative sm:block hidden">
           <i class="mdi mdi-magnify absolute top-1/2 left-3 -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
           <input
@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="p-2 min-h-[472px] max-h-[472px]" data-simplebar>
+    <div class="p-2 min-h-[576px] max-h-[576px]" data-simplebar>
       <div v-for="user in users" v-bind:key="user.id">
         <a href="#" class="flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5"
            @click.prevent="selectUser(user)">

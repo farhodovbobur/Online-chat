@@ -1,33 +1,31 @@
 <template>
-  <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
-      <SidebarComponent />
-  </nav>
+  <div class="page-wrapper toggled">
 
-  <!-- Start Page Content -->
-  <main class="page-content bg-gray-50 dark:bg-slate-800 min-h-screen flex flex-col">
-    <!-- Top Header -->
-    <div class="top-header bg-white dark:bg-slate-900 shadow fixed top-0 right-0 z-50 px-9 py-4">
+    <SidebarComponent />
+
+    <!-- Start Page Content -->
+    <main class="page-content bg-gray-50 dark:bg-slate-800 min-h-screen flex flex-col">
+
       <TopHeaderComponent />
-    </div>
-    <!-- Top Header -->
 
-    <div class="container-fluid relative pt-14 px-8">
-      <div>
-        <!-- Start Content -->
-        <div class="grid md:grid-cols-12 grid-cols-1 mt-6 gap-2">
-          <div class="xl:col-span-3 lg:col-span-5 md:col-span-5">
-            <UsersComponent :auth="props.auth" @select-user="openChat"/>
-          </div>
+      <div class="container-fluid relative pt-10 pl-4 pr-10">
+        <div>
+          <!-- Start Content -->
+          <div class="grid md:grid-cols-12 grid-cols-1 mt-6 gap-2">
+            <div class="xl:col-span-3 lg:col-span-5 md:col-span-5">
+              <UsersComponent :auth="props.auth" @select-user="openChat"/>
+            </div>
 
-          <div class="xl:col-span-9 lg:col-span-7 md:col-span-7">
-            <ChatComponent :user="selectedUser" :auth="auth" v-if="selectedUser"/>
+            <div class="xl:col-span-9 lg:col-span-7 md:col-span-7">
+              <ChatComponent :user="selectedUser" :auth="auth" v-if="selectedUser"/>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- End Content -->
-    </div><!--end container-->
-  </main>
-  <!--End page-content" -->
+        <!-- End Content -->
+      </div><!--end container-->
+    </main>
+    <!--End page-content" -->
+  </div>
 
 </template>
 
@@ -40,6 +38,7 @@ import ChatComponent from "./components/ChatComponent.vue";
 import TopHeaderComponent from "./components/TopHeaderComponent.vue";
 import SidebarComponent from "./components/SidebarComponent.vue";
 
+
 const props = defineProps({
   auth: {
     type: Object,
@@ -49,11 +48,13 @@ const props = defineProps({
 
 const store = chatStore()
 
+
 const selectedUser = ref(null);
 
 const openChat = (user) => {
   selectedUser.value = user;
 };
+
 
 onMounted(async () => {
   store.auth = props.auth

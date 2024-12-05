@@ -35,13 +35,12 @@
     </div>
     <!-- Loader End -->
 
-    <div class="page-wrapper toggled">
-        {{ $slot }}
-    </div>
+    {{ $slot }}
+
     <!-- page-wrapper -->
 
     <!-- Switcher -->
-    <div class="fixed top-[10%] z-50">
+    <div class="fixed top-[30%] -end-2 z-50">
         <span class="relative inline-block rotate-90">
             <input type="checkbox" class="checkbox opacity-0 absolute" id="chk" />
             <label class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-700 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8" for="chk">
