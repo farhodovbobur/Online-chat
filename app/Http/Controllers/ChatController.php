@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\GotMessage;
 use App\Jobs\SendMessage;
 use App\Models\Message;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -12,6 +13,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Random\RandomException;
 
 class ChatController extends Controller
 {
@@ -112,8 +114,19 @@ class ChatController extends Controller
         return response()->json($messages);
     }
 
+    /**
+     * @throws RandomException
+     */
     public function storeMessages(): JsonResponse
     {
+        $room = Room::query()->find(request('room_id'));
+
+        if (!$room) {
+            $channel = random_bytes(10);
+            Room::query()->create([
+                "channel" => $channel
+            ]);
+        }
         $message = Message::query()->create([
             'sender_id' => request('sender'),
             'receiver_id' => request('receiver'),

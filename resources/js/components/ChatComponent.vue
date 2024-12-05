@@ -109,6 +109,7 @@ import axios from "axios";
   const messages = ref([]);
   const newMessage = ref("");
   const messagesContainer = ref(null);
+  const channel = ref("");
 
   const fileLink = (file) => `/assets/images/client/${file}`;
 

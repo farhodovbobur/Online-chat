@@ -37,7 +37,6 @@
 
     <div class="page-wrapper toggled">
         {{ $slot }}
-
     </div>
     <!-- page-wrapper -->
 
