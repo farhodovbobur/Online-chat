@@ -1,9 +1,7 @@
 <template>
 
   <div class="sidebar-content">
-    <div class="sidebar-brand">
-      <a href=""><img src="assets/images/logo-light.png" alt=""></a>
-    </div>
+
 
     <ul class="sidebar-menu border-t border-white/10" data-simplebar style="height: calc(100% - 70px);">
       <li>

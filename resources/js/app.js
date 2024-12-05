@@ -6,8 +6,12 @@ import './hously/jsvectormap.init.js'
 import './hously/app.js';
 
 
-import App from "./App.vue";
 import { createApp } from 'vue';
+import { createPinia } from 'pinia'
+import App from "./App.vue";
+
+const pinia = createPinia()
+
 
 const app = createApp({});
-app.component('app', App).mount('#app');
+app.component('app', App).use(pinia).mount('#app');
